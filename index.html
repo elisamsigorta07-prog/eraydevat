@@ -220,10 +220,13 @@
         </div>
 
         <div class="message-box-container">
-          <textarea id="guestNoteInput" class="message-textarea-field" placeholder="Dileklerinizi bizimle paylaşın..."></textarea>
-          <button class="btn-send-message-action" onclick="handleSendGuestNote()" title="Gönder">
-            <i class="fa-solid fa-paper-plane"></i>
-          </button>
+          <input type="text" id="guestNoteNameInput" class="guest-input-vintage message-name-input" placeholder="Adınız ve Soyadınız">
+          <div class="message-textarea-wrap">
+            <textarea id="guestNoteInput" class="message-textarea-field" placeholder="Dileklerinizi bizimle paylaşın..."></textarea>
+            <button class="btn-send-message-action" onclick="handleSendGuestNote()" title="Gönder">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </div>
         </div>
 
         <div class="ending-love-quote">

@@ -409,12 +409,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.handleSendGuestNote = function() {
     const noteField = document.getElementById("guestNoteInput");
-    const nameField = document.getElementById("guestNameInput");
+    const noteNameField = document.getElementById("guestNoteNameInput");
+    const rsvpNameField = document.getElementById("guestNameInput");
+
     const note = noteField.value.trim();
-    const guestName = nameField.value.trim() || "Bir Misafir";
+    // Önce mesaj alanındaki ismi al, yoksa yukarıdaki katılım alanındaki ismi al
+    const guestName = (noteNameField ? noteNameField.value.trim() : "") || (rsvpNameField ? rsvpNameField.value.trim() : "");
+
+    if (!guestName) {
+      showToastNotification("Lütfen adınızı ve soyadınızı yazın.");
+      if (noteNameField) noteNameField.focus();
+      return;
+    }
 
     if (!note) {
       showToastNotification("Lütfen bir dilek veya mesaj yazın.");
+      noteField.focus();
       return;
     }
 
