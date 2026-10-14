@@ -376,21 +376,24 @@ html, body {
 
 .details-card-theme {
   width: 100%;
-  background: rgba(251, 249, 244, 0.96);
-  border-radius: 18px;
+  background: rgba(251, 249, 244, 0.97);
+  border-radius: 20px;
   border: 1px solid var(--theme-border-lace);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
-  padding: 28px 18px;
-  margin-top: 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  padding: 34px 22px 28px 22px;
+  margin: auto 0;
   text-align: center;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .details-poem-quote {
   font-family: 'Cinzel', serif;
-  font-size: 12.5px;
+  font-size: 13px;
   letter-spacing: 1.8px;
-  line-height: 1.7;
+  line-height: 1.75;
   color: #38352e;
   font-weight: 500;
 }
@@ -400,7 +403,7 @@ html, body {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 16px auto;
+  margin: 4px auto;
   color: var(--theme-olive);
   font-size: 14px;
 }
@@ -414,9 +417,9 @@ html, body {
 
 .details-triplet-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.2fr;
+  grid-template-columns: 1fr 1fr 1.25fr;
   gap: 6px;
-  margin-top: 15px;
+  margin: 10px 0;
 }
 
 .triplet-box {
@@ -438,22 +441,23 @@ html, body {
 }
 
 .triplet-icon-wrap {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid #d4c2a8;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #4a5c43;
-  font-size: 16px;
+  font-size: 17px;
   margin-bottom: 8px;
   background: #faf6ee;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .triplet-title-text {
   font-family: 'Cinzel', serif;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 600;
   color: #2b2823;
   line-height: 1.4;
@@ -466,74 +470,37 @@ html, body {
   margin-top: 3px;
 }
 
-/* Zarif Zeytin Çelenkli Altın Monogram Rozeti (Alanya resmi yerine) */
-.details-emblem-badge {
+/* Modern & Prestijli Konum Butonu (Kartın Altında Entegre ve Dikkat Çekici) */
+.btn-open-location-modern {
   width: 100%;
-  max-width: 320px;
-  margin: 22px auto 10px auto;
-  padding: 18px 10px;
+  padding: 16px 24px;
+  margin-top: 10px;
   border-radius: 14px;
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.7) 0%, rgba(246,242,232,0.4) 100%);
-  border: 1px dashed rgba(189, 160, 97, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-
-.emblem-olive-branch {
-  width: 36px;
-  height: 50px;
-  color: var(--theme-olive);
-  opacity: 0.85;
-}
-
-.emblem-wax-circle {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #d9b577 0%, #aa8543 60%, #6e5221 100%);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), inset 0 2px 3px rgba(255,255,255,0.4);
-  border: 2px solid #c5a059;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Alex Brush', cursive;
-  font-size: 26px;
-  color: #fff9ea;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-}
-
-.btn-open-location-theme {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px 24px;
-  border-radius: 30px;
-  background: rgba(251, 249, 244, 0.96);
-  color: #2b2823;
-  border: 1px solid #d5c6af;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #374631 0%, #253120 100%);
+  color: #fcf9f2;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  box-shadow: 0 8px 24px rgba(35, 47, 30, 0.38);
   font-family: 'Cinzel', serif;
-  font-size: 12.5px;
-  letter-spacing: 2px;
+  font-size: 13px;
+  letter-spacing: 2.2px;
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
-  margin-bottom: 25px;
   transition: all 0.25s ease;
 }
 
-.btn-open-location-theme:active {
-  transform: scale(0.97);
-  background: #f4ecdc;
+.btn-open-location-modern:hover, .btn-open-location-modern:active {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 12px 28px rgba(35, 47, 30, 0.48);
+  background: linear-gradient(135deg, #42553b 0%, #2c3b27 100%);
 }
 
-.btn-open-location-theme i {
-  color: var(--theme-olive);
-  font-size: 15px;
+.btn-open-location-modern i {
+  color: var(--theme-gold-accent);
+  font-size: 16px;
 }
 
 /* --------------------------------------------------------------------------
