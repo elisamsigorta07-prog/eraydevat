@@ -290,11 +290,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // -------------------------------------------------------------------------
   // TELEGRAM BOT BİLDİRİM ENTEGRASYONU (@Davet12Bot)
+  // Vercel Serverless Function (/api/telegram) üzerinden güvenli ve anında iletim
   // -------------------------------------------------------------------------
   const TG_BOT_TOKEN = "8826023436:AAFqqHsxSfP8eGEgwCGkmJd1D0pIc1_p7bo";
   const TG_CHAT_ID = "5411477981";
 
   async function sendTelegramMessage(text) {
+    // 1. Önce sunucu tarafı Vercel API üzerinden iletmeyi dene (CORS ve ISS engelini aşar)
+    try {
+      const res = await fetch("/api/telegram", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text })
+      });
+      if (res.ok) return;
+    } catch (e) {
+      console.log("Vercel api fallback:", e);
+    }
+
+    // 2. Yedek: Doğrudan Telegram API'sine istek gönder
     try {
       await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
         method: "POST",
@@ -306,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
       });
     } catch (err) {
-      console.log("Telegram notification:", err);
+      console.log("Telegram direct err:", err);
     }
   }
 
