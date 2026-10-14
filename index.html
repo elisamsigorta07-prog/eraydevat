@@ -16,7 +16,7 @@
   <!-- Google Web Fonts: Vintage Serif & Calligraphy -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Konfeti Kütüphanesi -->
@@ -85,7 +85,7 @@
       </div>
 
       <!-- Devamı İçin Kaydırın Kapsülü -->
-      <div class="hero-scroll-bottom-wrap">
+      <div class="screen-scroll-bottom-wrap">
         <div class="scroll-continue-pill" onclick="navigateTo('screen-details')">
           <span>DEVAMI İÇİN KAYDIRIN</span>
           <i class="fa-solid fa-chevron-down"></i>
@@ -141,62 +141,17 @@
           <span>KONUM VE YOL TARİFİ</span>
         </button>
       </div>
-    </section>
 
-    <!-- 3. KART: GERİ SAYIM & TAKVİM -->
-    <section class="invitation-screen" id="screen-timer">
-      <div class="timer-card-wrapper-theme">
-        <div class="timer-top-label">BÜYÜK GÜNÜMÜZE</div>
-        <div class="timer-calligraphy-subtitle">Kalan Süre</div>
-
-        <div class="botanical-ornament-theme">
-          <i class="fa-solid fa-leaf"></i>
-        </div>
-
-        <!-- Canlı Sayaç Blokları -->
-        <div class="timer-countdown-row">
-          <div class="countdown-digit-block">
-            <span class="digit-numeric" id="cntDays">00</span>
-            <span class="digit-legend">GÜN</span>
-          </div>
-          <div class="countdown-digit-block">
-            <span class="digit-numeric" id="cntHours">00</span>
-            <span class="digit-legend">SAAT</span>
-          </div>
-          <div class="countdown-digit-block">
-            <span class="digit-numeric" id="cntMins">00</span>
-            <span class="digit-legend">DAKİKA</span>
-          </div>
-          <div class="countdown-digit-block">
-            <span class="digit-numeric" id="cntSecs">00</span>
-            <span class="digit-legend">SANİYE</span>
-          </div>
-        </div>
-
-        <div class="botanical-ornament-theme">
-          <i class="fa-solid fa-seedling"></i>
-        </div>
-
-        <!-- Takvim Aksiyonları -->
-        <div class="calendar-action-section">
-          <div class="cal-header-title">TAKVİMİNİZE EKLEYİN</div>
-          <div class="cal-header-sub">Bu özel günü takviminizde saklamak ister misiniz?</div>
-
-          <div class="calendar-buttons-stack">
-            <a href="#" class="btn-add-calendar" onclick="addGoogleEvent(event)">
-              <i class="fa-brands fa-google"></i>
-              <span>Google Takvim</span>
-            </a>
-            <a href="#" class="btn-add-calendar" onclick="addAppleEvent(event)">
-              <i class="fa-brands fa-apple"></i>
-              <span>Apple Takvim</span>
-            </a>
-          </div>
+      <!-- Devamı İçin Kaydırın Kapsülü -->
+      <div class="screen-scroll-bottom-wrap">
+        <div class="scroll-continue-pill" onclick="navigateTo('screen-rsvp')">
+          <span>DEVAMI İÇİN KAYDIRIN</span>
+          <i class="fa-solid fa-chevron-down"></i>
         </div>
       </div>
     </section>
 
-    <!-- 4. KART: KATILIM & DİLEK KUTUSU -->
+    <!-- 3. KART: KATILIM & DİLEK KUTUSU -->
     <section class="invitation-screen" id="screen-rsvp">
       <div class="rsvp-card-wrapper-theme">
         <h2 class="rsvp-cursive-title">Mutluluğumuza<br>Ortak Olur Musunuz?</h2>
@@ -247,6 +202,14 @@
         <div class="ending-love-quote">
           <span>SİZİNLE DAHA DA GÜZEL...</span>
           <i class="fa-solid fa-heart"></i>
+        </div>
+      </div>
+
+      <!-- Başa Dön / Sayfa Sonu Kapsülü -->
+      <div class="screen-scroll-bottom-wrap">
+        <div class="scroll-continue-pill" onclick="navigateTo('screen-hero')">
+          <span>BAŞA DÖN</span>
+          <i class="fa-solid fa-chevron-up"></i>
         </div>
       </div>
     </section>

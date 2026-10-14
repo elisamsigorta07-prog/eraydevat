@@ -114,13 +114,13 @@ html, body {
   margin: 0 auto;
   z-index: 6000;
   background: 
-    linear-gradient(180deg, rgba(20, 26, 18, 0.75) 0%, rgba(25, 34, 22, 0.45) 45%, rgba(15, 20, 13, 0.9) 100%),
-    url('../assets/envelope_olive_luxury.jpg') center center / cover no-repeat;
+    linear-gradient(180deg, rgba(82, 75, 62, 0.45) 0%, rgba(68, 62, 50, 0.35) 45%, rgba(45, 40, 32, 0.65) 100%),
+    url('../assets/vintage_envelope.jpg') center center / cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 55px 22px 35px 22px;
+  padding: 50px 22px 35px 22px;
   transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
   touch-action: pan-y;
   cursor: grab;
@@ -138,10 +138,10 @@ html, body {
   font-size: 13.5px;
   letter-spacing: 2.6px;
   line-height: 1.85;
-  color: #f7f4ec;
+  color: #f7f3ea;
   font-weight: 500;
   text-transform: uppercase;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.85);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 /* M&E Mühürlü ve Zeytin Dallı Lüks Zarf Kartı */
@@ -258,105 +258,111 @@ html, body {
 }
 
 .hero-bride-name {
-  font-family: 'Alex Brush', cursive;
-  font-size: 52px;
-  color: #242720;
-  line-height: 1;
-  font-weight: normal;
-  letter-spacing: 1px;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-style: italic;
+  font-size: 46px;
+  color: #2c2a24;
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
 
 .hero-names-connector {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 17px;
-  color: #727a6c;
-  margin: 2px 0;
+  font-weight: 300;
+  font-size: 15px;
+  color: #7b7f73;
+  margin: 1px 0;
   display: flex;
   align-items: center;
   gap: 12px;
-  width: 45%;
+  width: 40%;
   justify-content: center;
 }
 
 .hero-names-connector::before, .hero-names-connector::after {
   content: "";
   height: 1px;
-  background: #cfcaa5;
+  background: #dcd4c3;
   flex: 1;
 }
 
 .hero-groom-name {
-  font-family: 'Alex Brush', cursive;
-  font-size: 52px;
-  color: #242720;
-  line-height: 1;
-  font-weight: normal;
-  letter-spacing: 1px;
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-style: italic;
+  font-size: 46px;
+  color: #2c2a24;
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
 
 .hero-wedding-date-text {
   font-family: 'Cinzel', serif;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
-  letter-spacing: 3px;
-  color: #2b3026;
-  margin-top: 18px;
+  letter-spacing: 2.5px;
+  color: #2d3129;
+  margin-top: 14px;
 }
 
 .hero-wedding-venue-text {
   font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
+  font-size: 8.5px;
   font-weight: 500;
-  letter-spacing: 1.2px;
-  color: #555b4e;
-  margin-top: 6px;
-  line-height: 1.4;
+  letter-spacing: 0.8px;
+  color: #5d6356;
+  margin-top: 5px;
+  line-height: 1.35;
   text-transform: uppercase;
+  max-width: 100%;
+  white-space: nowrap;
 }
 
 .hero-wedding-time-text {
   font-family: 'Cinzel', serif;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #2b3026;
+  color: #2d3129;
   margin-top: 3px;
 }
 
-/* "Devamı İçin Kaydırın" Kapsülü */
-.hero-scroll-bottom-wrap {
+/* "Devamı İçin Kaydırın" Kapsülü (Tüm ekranlarda tam ekran içine sığan esnek konum) */
+.screen-scroll-bottom-wrap {
   position: absolute;
-  bottom: 25px;
+  bottom: calc(var(--safe-bottom) + 12px);
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
-  z-index: 20;
+  z-index: 25;
+  pointer-events: auto;
 }
 
 .scroll-continue-pill {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  border-radius: 25px;
-  background: rgba(25, 34, 22, 0.85);
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 22px;
+  background: rgba(36, 45, 32, 0.82);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(220, 205, 175, 0.5);
   color: #f7f4ec;
   font-family: 'Cinzel', serif;
-  font-size: 11px;
-  letter-spacing: 2px;
+  font-size: 10px;
+  letter-spacing: 1.8px;
   font-weight: 500;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
   cursor: pointer;
   animation: bounceHint 2.2s infinite;
   transition: all 0.25s ease;
 }
 
 .scroll-continue-pill i {
-  font-size: 13px;
+  font-size: 11px;
   color: var(--theme-gold-accent);
 }
 
@@ -380,13 +386,14 @@ html, body {
   border-radius: 20px;
   border: 1px solid var(--theme-border-lace);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-  padding: 34px 22px 28px 22px;
-  margin: auto 0;
+  padding: 30px 22px 24px 22px;
+  margin-top: auto;
+  margin-bottom: 50px;
   text-align: center;
   backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 15px;
 }
 
 .details-poem-quote {
@@ -644,17 +651,21 @@ html, body {
   border-radius: 18px;
   border: 1px solid var(--theme-border-lace);
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
-  padding: 34px 20px 25px 20px;
-  margin: auto 0;
+  padding: 28px 20px 22px 20px;
+  margin-top: auto;
+  margin-bottom: 50px;
   text-align: center;
   backdrop-filter: blur(6px);
 }
 
 .rsvp-cursive-title {
-  font-family: 'Alex Brush', cursive;
-  font-size: 42px;
-  color: #35402f;
-  line-height: 1.25;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 27px;
+  color: #55664d;
+  line-height: 1.35;
+  letter-spacing: 0.8px;
   margin-bottom: 4px;
 }
 

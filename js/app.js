@@ -111,17 +111,19 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // -------------------------------------------------------------------------
-  // CANLI GERİ SAYIM SAYACI (17 KASIM 2026)
+  // CANLI GERİ SAYIM SAYACI (Opsiyonel)
   // -------------------------------------------------------------------------
   function updateCountdown() {
+    const daysEl = document.getElementById("cntDays");
+    if (!daysEl) return;
     const now = new Date().getTime();
     const difference = TARGET_DATE - now;
 
     if (difference <= 0) {
-      document.getElementById("cntDays").innerText = "0";
-      document.getElementById("cntHours").innerText = "00";
-      document.getElementById("cntMins").innerText = "00";
-      document.getElementById("cntSecs").innerText = "00";
+      daysEl.innerText = "0";
+      const h = document.getElementById("cntHours"); if (h) h.innerText = "00";
+      const m = document.getElementById("cntMins"); if (m) m.innerText = "00";
+      const s = document.getElementById("cntSecs"); if (s) s.innerText = "00";
       return;
     }
 
@@ -130,12 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     const secs = Math.floor((difference % (1000 * 60)) / 1000);
 
-    document.getElementById("cntDays").innerText = days;
-    document.getElementById("cntHours").innerText = String(hours).padStart(2, '0');
-    document.getElementById("cntMins").innerText = String(mins).padStart(2, '0');
-    document.getElementById("cntSecs").innerText = String(secs).padStart(2, '0');
+    daysEl.innerText = days;
+    const h = document.getElementById("cntHours"); if (h) h.innerText = String(hours).padStart(2, '0');
+    const m = document.getElementById("cntMins"); if (m) m.innerText = String(mins).padStart(2, '0');
+    const s = document.getElementById("cntSecs"); if (s) s.innerText = String(secs).padStart(2, '0');
   }
-  setInterval(updateCountdown, 1000);
   updateCountdown();
 
   // -------------------------------------------------------------------------
