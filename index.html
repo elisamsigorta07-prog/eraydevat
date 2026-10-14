@@ -22,10 +22,26 @@
   <!-- Konfeti Kütüphanesi -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+  <!-- Kritik Görselleri Önceden İndirme (Preload) -->
+  <link rel="preload" as="image" href="assets/vintage_envelope.jpg">
+  <link rel="preload" as="image" href="assets/theme_lace_masterpiece.jpg">
+  <link rel="preload" as="image" href="assets/names_calligraphy.png">
+
   <!-- Proje Modüler CSS -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+  <!-- ========================================================
+       ZARİF VINTAGE YÜKLENİYOR (LOADER) EKRANI
+       ======================================================== -->
+  <div id="wedding-loader">
+    <div class="loader-content">
+      <div class="loader-monogram">M & E</div>
+      <div class="loader-spinner-ring"></div>
+      <div class="loader-text">ÖZEL GÜNÜMÜZE YÜKLENİYOR...</div>
+    </div>
+  </div>
 
   <!-- Arka Plan Fon Müziği -->
   <audio id="bgMusic" loop autoplay preload="auto" playsinline>

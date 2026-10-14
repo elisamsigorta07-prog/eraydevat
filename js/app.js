@@ -16,6 +16,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const mapModal = document.getElementById("mapModal");
   const petalsLayer = document.getElementById("petals-canvas-layer");
 
+  const loaderOverlay = document.getElementById("wedding-loader");
+
+  // -------------------------------------------------------------------------
+  // GÖRSELLERİ ARKA PLANDA ÖN YÜKLEME & ZARİF LOADER'I KALDIRMA
+  // -------------------------------------------------------------------------
+  const criticalImages = [
+    "assets/vintage_envelope.jpg",
+    "assets/theme_lace_masterpiece.jpg",
+    "assets/names_calligraphy.png"
+  ];
+
+  let loadedCount = 0;
+  function removeLoader() {
+    if (!loaderOverlay) return;
+    loaderOverlay.classList.add("loaded");
+    setTimeout(() => {
+      loaderOverlay.remove();
+    }, 600);
+  }
+
+  // Güvenlik zamanlayıcısı: En geç 1.8 saniyede loader kesinlikle kapanır
+  const maxLoaderTimeout = setTimeout(removeLoader, 1800);
+
+  criticalImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+    img.onload = img.onerror = () => {
+      loadedCount++;
+      if (loadedCount >= criticalImages.length) {
+        clearTimeout(maxLoaderTimeout);
+        // Hafif zarif bir geçiş hissi için minik bir gecikme
+        setTimeout(removeLoader, 250);
+      }
+    };
+  });
+
   const musicBtn = document.getElementById("musicBtn");
   const musicHintLabel = document.getElementById("musicHintLabel");
   let manuallyPaused = false;
