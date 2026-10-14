@@ -66,17 +66,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function unlockAudio(event) {
-    // Butonun kendi aç/kapat işlemiyle çakışmaz; kapatılan müziği yeniden açmaz.
-    if (event.target.closest("#musicHintWrap")) return;
+    if (event && event.target && event.target.closest("#musicHintWrap")) return;
     tryPlayAudio();
   }
-  document.addEventListener("click", unlockAudio);
-  document.addEventListener("touchend", unlockAudio, { passive: true });
+
+  // Android ve iOS'ta parmak ekrana değer değmez veya kaydırmaya başladığı anda ses kilidini aç
+  const interactionEvents = ["pointerdown", "touchstart", "touchmove", "touchend", "click"];
+  interactionEvents.forEach(evt => {
+    document.addEventListener(evt, unlockAudio, { passive: true });
+  });
+
   document.addEventListener("keydown", event => {
     if (event.key === "Enter" || event.key === " ") unlockAudio(event);
   });
   syncMusicControl();
-  // İzin veren tarayıcılarda otomatik; engellenirse ilk dokunuşta yeniden dene.
   tryPlayAudio();
 
   // -------------------------------------------------------------------------
@@ -113,11 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let touchStartX = 0;
 
   envelopeLayer.addEventListener("touchstart", (e) => {
+    tryPlayAudio();
     touchStartY = e.touches[0].clientY;
     touchStartX = e.touches[0].clientX;
   }, { passive: true });
 
   envelopeLayer.addEventListener("touchmove", (e) => {
+    tryPlayAudio();
     const currentY = e.touches[0].clientY;
     const diffY = touchStartY - currentY;
     // Kullanıcı yukarı doğru 20px kaydırdığı anda BEKLETMEDEN ANINDA AÇ
