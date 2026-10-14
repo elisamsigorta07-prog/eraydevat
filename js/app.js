@@ -69,6 +69,36 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // -------------------------------------------------------------------------
+  // PARMAK İLE KAYDIRINCA (SWIPE UP / DOWN) AÇILMA ÖZELLİĞİ
+  // -------------------------------------------------------------------------
+  let touchStartY = 0;
+  let touchStartX = 0;
+
+  envelopeLayer.addEventListener("touchstart", (e) => {
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  envelopeLayer.addEventListener("touchend", (e) => {
+    const touchEndY = e.changedTouches[0].clientY;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diffY = touchStartY - touchEndY;
+    const diffX = Math.abs(touchStartX - touchEndX);
+
+    // Kullanıcı yukarı doğru en az 40px kaydırdıysa (veya aşağı kaydırdıysa)
+    if (Math.abs(diffY) > 40 && Math.abs(diffY) > diffX) {
+      window.handleOpenEnvelope();
+    }
+  }, { passive: true });
+
+  // Mouse tekerleği (wheel) ile kaydırma desteği
+  envelopeLayer.addEventListener("wheel", (e) => {
+    if (Math.abs(e.deltaY) > 20) {
+      window.handleOpenEnvelope();
+    }
+  }, { passive: true });
+
+  // -------------------------------------------------------------------------
   // DİĞER BÖLÜMLERE YUMUŞAK KAYDIRMA
   // -------------------------------------------------------------------------
   window.navigateTo = function(targetElementId) {
