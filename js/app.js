@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const envelopeLayer = document.getElementById("envelope-layer");
   const envelopeBox = document.getElementById("envelopeBox");
   const audio = document.getElementById("bgMusic");
-  const musicBtn = document.getElementById("musicBtn");
   const toastPill = document.getElementById("toastPill");
   const toastMsg = document.getElementById("toastMsg");
   const mapModal = document.getElementById("mapModal");
@@ -20,20 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let isAudioActive = false;
 
   // -------------------------------------------------------------------------
-  // MÜZİK KONTROLÜ
+  // MÜZİK OTOMATİK BAŞLATMA — İlk dokunuşta başlar, sessizce çalar
   // -------------------------------------------------------------------------
-  musicBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (isAudioActive) {
-      audio.pause();
-      musicBtn.classList.remove("is-playing");
-    } else {
-      audio.play().then(() => {
-        musicBtn.classList.add("is-playing");
-      }).catch(err => console.log("Audio playback:", err));
-    }
-    isAudioActive = !isAudioActive;
-  });
+  function startMusic() {
+    if (isAudioActive) return;
+    audio.play().then(() => {
+      isAudioActive = true;
+    }).catch(() => {});
+  }
 
   // -------------------------------------------------------------------------
   // 1 & 2: ZARF AÇILIŞ ANİMASYONU
@@ -41,13 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
   window.handleOpenEnvelope = function() {
     if (envelopeLayer.classList.contains("unveiled")) return;
 
-    // Hemen zarf katmanını yukarı kaydırıp ana davetiyeye geçir (gecikmesiz anında tepki)
     envelopeLayer.classList.add("unveiled");
 
     const appContainer = document.getElementById("invitation-app");
     if (appContainer) {
       appContainer.scrollTop = 0;
     }
+
+    // Müziği zarf açılışında başlat
+    startMusic();
 
     // Kutlama konfetisi
     try {
@@ -60,14 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     } catch (e) {}
-
-    // Müziği ilk dokunuşta başlat
-    if (!isAudioActive) {
-      audio.play().then(() => {
-        isAudioActive = true;
-        musicBtn.classList.add("is-playing");
-      }).catch(() => {});
-    }
   };
 
   // -------------------------------------------------------------------------
