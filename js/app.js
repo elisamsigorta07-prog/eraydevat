@@ -39,16 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1 & 2: ZARF AÇILIŞ ANİMASYONU
   // -------------------------------------------------------------------------
   window.handleOpenEnvelope = function() {
-    // 3D Kapağın açılması ve kartın çıkışı
-    envelopeBox.classList.add("anim-open");
+    if (envelopeLayer.classList.contains("unveiled")) return;
+
+    // Hemen zarf katmanını yukarı kaydırıp ana davetiyeye geçir (gecikmesiz anında tepki)
+    envelopeLayer.classList.add("unveiled");
 
     // Kutlama konfetisi
     try {
       if (typeof confetti === "function") {
         confetti({
-          particleCount: 65,
-          spread: 80,
-          origin: { y: 0.62 },
+          particleCount: 55,
+          spread: 75,
+          origin: { y: 0.6 },
           colors: ['#bda061', '#ebd7b2', '#6b7a60', '#ffffff']
         });
       }
@@ -61,15 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
         musicBtn.classList.add("is-playing");
       }).catch(() => {});
     }
-
-    // 1 saniye sonra zarf katmanını kaldırıp ana davetiyeye geç
-    setTimeout(() => {
-      envelopeLayer.classList.add("unveiled");
-    }, 1000);
   };
 
   // -------------------------------------------------------------------------
-  // PARMAK İLE KAYDIRINCA (SWIPE UP / DOWN) AÇILMA ÖZELLİĞİ
+  // PARMAK İLE KAYDIRINCA ANINDA TEPKİ (SWIPE UP / DOWN)
   // -------------------------------------------------------------------------
   let touchStartY = 0;
   let touchStartX = 0;
@@ -79,21 +76,26 @@ document.addEventListener("DOMContentLoaded", () => {
     touchStartX = e.touches[0].clientX;
   }, { passive: true });
 
-  envelopeLayer.addEventListener("touchend", (e) => {
-    const touchEndY = e.changedTouches[0].clientY;
-    const touchEndX = e.changedTouches[0].clientX;
-    const diffY = touchStartY - touchEndY;
-    const diffX = Math.abs(touchStartX - touchEndX);
-
-    // Kullanıcı yukarı doğru en az 40px kaydırdıysa (veya aşağı kaydırdıysa)
-    if (Math.abs(diffY) > 40 && Math.abs(diffY) > diffX) {
+  envelopeLayer.addEventListener("touchmove", (e) => {
+    const currentY = e.touches[0].clientY;
+    const diffY = touchStartY - currentY;
+    // Kullanıcı yukarı doğru 20px kaydırdığı anda BEKLETMEDEN ANINDA AÇ
+    if (diffY > 20) {
       window.handleOpenEnvelope();
     }
   }, { passive: true });
 
-  // Mouse tekerleği (wheel) ile kaydırma desteği
+  envelopeLayer.addEventListener("touchend", (e) => {
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffY = touchStartY - touchEndY;
+    if (Math.abs(diffY) > 20) {
+      window.handleOpenEnvelope();
+    }
+  }, { passive: true });
+
+  // Mouse tekerleği ile kaydırma desteği
   envelopeLayer.addEventListener("wheel", (e) => {
-    if (Math.abs(e.deltaY) > 20) {
+    if (Math.abs(e.deltaY) > 10) {
       window.handleOpenEnvelope();
     }
   }, { passive: true });

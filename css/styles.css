@@ -121,7 +121,7 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding: 55px 22px 35px 22px;
-  transition: transform 1.1s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.9s ease;
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
   touch-action: pan-y;
   cursor: grab;
 }
@@ -157,7 +157,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.25s ease;
 }
 
 .envelope-interactive-card:active {
@@ -242,23 +242,24 @@ html, body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  max-width: 250px;
-  margin-top: -15px; /* Dantel çerçevenin tam ortasına hizalama */
+  max-width: 230px;
+  margin-top: 5px; /* Dantel çerçevenin tam aydınlık merkezine yerleşim */
 }
 
 .hero-quote-script {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: var(--theme-text-muted);
-  margin-bottom: 22px;
-  letter-spacing: 0.3px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #555b4e;
+  margin-bottom: 14px;
+  letter-spacing: 0.2px;
+  max-width: 215px;
 }
 
 .hero-bride-name {
   font-family: 'Alex Brush', cursive;
-  font-size: 58px;
+  font-size: 52px;
   color: #242720;
   line-height: 1;
   font-weight: normal;
@@ -268,9 +269,9 @@ html, body {
 .hero-names-connector {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 18px;
+  font-size: 17px;
   color: #727a6c;
-  margin: 3px 0;
+  margin: 2px 0;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -287,7 +288,7 @@ html, body {
 
 .hero-groom-name {
   font-family: 'Alex Brush', cursive;
-  font-size: 58px;
+  font-size: 52px;
   color: #242720;
   line-height: 1;
   font-weight: normal;
@@ -296,30 +297,31 @@ html, body {
 
 .hero-wedding-date-text {
   font-family: 'Cinzel', serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 3.5px;
+  letter-spacing: 3px;
   color: #2b3026;
-  margin-top: 26px;
+  margin-top: 18px;
 }
 
 .hero-wedding-venue-text {
   font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 10px;
+  font-weight: 500;
   letter-spacing: 1.2px;
   color: #555b4e;
-  margin-top: 8px;
-  line-height: 1.5;
+  margin-top: 6px;
+  line-height: 1.4;
+  text-transform: uppercase;
 }
 
 .hero-wedding-time-text {
   font-family: 'Cinzel', serif;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 2px;
   color: #2b3026;
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 /* "Devamı İçin Kaydırın" Kapsülü */
@@ -464,17 +466,42 @@ html, body {
   margin-top: 3px;
 }
 
-/* Alanya Suluboya Manzara Çerçevesi */
-.details-art-mini {
+/* Zarif Zeytin Çelenkli Altın Monogram Rozeti (Alanya resmi yerine) */
+.details-emblem-badge {
   width: 100%;
   max-width: 320px;
-  height: 135px;
-  margin: 20px auto;
-  border-radius: 12px;
-  border: 1px solid #dfd2be;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  background: url('../assets/alanya_watercolor.jpg') center center / cover no-repeat;
+  margin: 22px auto 10px auto;
+  padding: 18px 10px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.7) 0%, rgba(246,242,232,0.4) 100%);
+  border: 1px dashed rgba(189, 160, 97, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.emblem-olive-branch {
+  width: 36px;
+  height: 50px;
+  color: var(--theme-olive);
+  opacity: 0.85;
+}
+
+.emblem-wax-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #d9b577 0%, #aa8543 60%, #6e5221 100%);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), inset 0 2px 3px rgba(255,255,255,0.4);
+  border: 2px solid #c5a059;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Alex Brush', cursive;
+  font-size: 26px;
+  color: #fff9ea;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
 }
 
 .btn-open-location-theme {
