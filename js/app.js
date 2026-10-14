@@ -19,14 +19,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let isAudioActive = false;
 
   // -------------------------------------------------------------------------
-  // MÜZİK OTOMATİK BAŞLATMA — İlk dokunuşta başlar, sessizce çalar
+  // MÜZİK — İlk kullanıcı dokunuşuyla (tarayıcı politikası gereği) başlar
   // -------------------------------------------------------------------------
   function startMusic() {
     if (isAudioActive) return;
+    audio.volume = 0.85;
     audio.play().then(() => {
       isAudioActive = true;
     }).catch(() => {});
   }
+
+  // Zarf ekranına ilk dokunuşta müziği başlat (tarayıcı politikası için şart)
+  envelopeLayer.addEventListener("touchstart", () => { startMusic(); }, { passive: true, once: true });
+  envelopeLayer.addEventListener("click", () => { startMusic(); }, { once: true });
 
   // -------------------------------------------------------------------------
   // 1 & 2: ZARF AÇILIŞ ANİMASYONU
@@ -41,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
       appContainer.scrollTop = 0;
     }
 
-    // Müziği zarf açılışında başlat
     startMusic();
 
     // Kutlama konfetisi
