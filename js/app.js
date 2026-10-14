@@ -278,36 +278,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // TELEGRAM BOT BİLDİRİM ENTEGRASYONU (@Davet12Bot)
   // -------------------------------------------------------------------------
   const TG_BOT_TOKEN = "8826023436:AAFqqHsxSfP8eGEgwCGkmJd1D0pIc1_p7bo";
-  // Chat ID biliniyorsa doğrudan gönderilir; bilinmiyorsa getUpdates ile dinamik yakalanır
-  let TG_CHAT_ID = localStorage.getItem("tg_wedding_chat_id") || "";
+  const TG_CHAT_ID = "5411477981";
 
   async function sendTelegramMessage(text) {
     try {
-      // Eğer Chat ID henüz yoksa, botun en son gelen mesajlarından chat ID'yi bul ve sakla
-      if (!TG_CHAT_ID) {
-        const updRes = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/getUpdates`);
-        const updData = await updRes.json();
-        if (updData.ok && updData.result && updData.result.length > 0) {
-          const lastMsg = updData.result[updData.result.length - 1];
-          const chatId = lastMsg.message ? lastMsg.message.chat.id : (lastMsg.my_chat_member ? lastMsg.my_chat_member.chat.id : null);
-          if (chatId) {
-            TG_CHAT_ID = String(chatId);
-            localStorage.setItem("tg_wedding_chat_id", TG_CHAT_ID);
-          }
-        }
-      }
-
-      if (TG_CHAT_ID) {
-        await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: TG_CHAT_ID,
-            text: text,
-            parse_mode: "HTML"
-          })
-        });
-      }
+      await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: TG_CHAT_ID,
+          text: text,
+          parse_mode: "HTML"
+        })
+      });
     } catch (err) {
       console.log("Telegram notification:", err);
     }
