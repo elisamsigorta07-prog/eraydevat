@@ -24,32 +24,46 @@ document.addEventListener("DOMContentLoaded", () => {
   const criticalImages = [
     "assets/vintage_envelope.jpg",
     "assets/theme_lace_masterpiece.jpg",
-    "assets/names_calligraphy_vertical.png"
+    "assets/names_calligraphy_vertical.png",
+    "assets/envelope_olive_luxury.jpg"
   ];
 
-  let loadedCount = 0;
+  let isLoaderRemoved = false;
   function removeLoader() {
-    if (!loaderOverlay) return;
+    if (isLoaderRemoved || !loaderOverlay) return;
+    isLoaderRemoved = true;
     loaderOverlay.classList.add("loaded");
     setTimeout(() => {
-      loaderOverlay.remove();
-    }, 600);
+      if (loaderOverlay && loaderOverlay.parentNode) {
+        loaderOverlay.remove();
+      }
+    }, 500);
   }
 
-  // Güvenlik zamanlayıcısı: En geç 1.8 saniyede loader kesinlikle kapanır
-  const maxLoaderTimeout = setTimeout(removeLoader, 1800);
+  // Güvenlik zaman aşımı: En geç 3.5 saniyede loader kapanır
+  const maxLoaderTimeout = setTimeout(removeLoader, 3500);
 
+  // Tüm kritik görsellerin tarayıcı belleğine tamamen yüklenip decode edildiğinden emin ol
+  let loadedCount = 0;
   criticalImages.forEach(src => {
     const img = new Image();
     img.src = src;
-    img.onload = img.onerror = () => {
+
+    const onComplete = () => {
       loadedCount++;
       if (loadedCount >= criticalImages.length) {
         clearTimeout(maxLoaderTimeout);
-        // Hafif zarif bir geçiş hissi için minik bir gecikme
-        setTimeout(removeLoader, 250);
+        // Tüm görseller render edilmeye hazır olduğunda loader perdesini kaldır
+        setTimeout(removeLoader, 200);
       }
     };
+
+    if (img.complete) {
+      onComplete();
+    } else {
+      img.onload = onComplete;
+      img.onerror = onComplete;
+    }
   });
 
   const musicBtn = document.getElementById("musicBtn");
