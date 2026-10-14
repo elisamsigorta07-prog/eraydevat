@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const criticalImages = [
     "assets/vintage_envelope.jpg",
     "assets/theme_lace_masterpiece.jpg",
-    "assets/names_calligraphy.png"
+    "assets/names_calligraphy_vertical.png"
   ];
 
   let loadedCount = 0;
