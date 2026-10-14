@@ -266,27 +266,27 @@ html, body {
 }
 
 .hero-bride-name {
-  font-family: 'Tangerine', 'Great Vibes', cursive;
+  font-family: 'Pinyon Script', 'Alex Brush', cursive;
   font-style: normal;
-  font-size: 68px;
+  font-size: 58px;
   color: #2a2820;
-  line-height: 0.95;
+  line-height: 1.0;
   font-weight: 400;
   letter-spacing: 1px;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.1);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.09);
 }
 
 .hero-names-connector {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-weight: 300;
-  font-size: 12px;
+  font-size: 13px;
   color: #9a9b93;
-  margin: 0;
+  margin: 2px 0;
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 40%;
+  width: 50%;
   justify-content: center;
 }
 
@@ -298,14 +298,14 @@ html, body {
 }
 
 .hero-groom-name {
-  font-family: 'Tangerine', 'Great Vibes', cursive;
+  font-family: 'Pinyon Script', 'Alex Brush', cursive;
   font-style: normal;
-  font-size: 68px;
+  font-size: 58px;
   color: #2a2820;
-  line-height: 0.95;
+  line-height: 1.0;
   font-weight: 400;
   letter-spacing: 1px;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.1);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.09);
 }
 
 .hero-wedding-date-text {

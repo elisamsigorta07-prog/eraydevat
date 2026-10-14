@@ -19,19 +19,28 @@ document.addEventListener("DOMContentLoaded", () => {
   let isAudioActive = false;
 
   // -------------------------------------------------------------------------
-  // MÜZİK — İlk kullanıcı dokunuşuyla (tarayıcı politikası gereği) başlar
+  // MÜZİK — Tarayıcı politikası: doğrudan event handler içinde çağrılmalı
   // -------------------------------------------------------------------------
-  function startMusic() {
+  function tryPlayAudio() {
     if (isAudioActive) return;
-    audio.volume = 0.85;
-    audio.play().then(() => {
-      isAudioActive = true;
-    }).catch(() => {});
+    isAudioActive = true;
+    audio.volume = 0.8;
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => { isAudioActive = false; });
+    }
   }
 
-  // Zarf ekranına ilk dokunuşta müziği başlat (tarayıcı politikası için şart)
-  envelopeLayer.addEventListener("touchstart", () => { startMusic(); }, { passive: true, once: true });
-  envelopeLayer.addEventListener("click", () => { startMusic(); }, { once: true });
+  // Her türlü ilk dokunuş/tıklamada dene
+  document.addEventListener("touchstart", function onFirstTouch() {
+    tryPlayAudio();
+    document.removeEventListener("touchstart", onFirstTouch);
+  }, { passive: true });
+
+  document.addEventListener("click", function onFirstClick() {
+    tryPlayAudio();
+    document.removeEventListener("click", onFirstClick);
+  });
 
   // -------------------------------------------------------------------------
   // 1 & 2: ZARF AÇILIŞ ANİMASYONU
@@ -39,14 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
   window.handleOpenEnvelope = function() {
     if (envelopeLayer.classList.contains("unveiled")) return;
 
+    tryPlayAudio();
     envelopeLayer.classList.add("unveiled");
 
     const appContainer = document.getElementById("invitation-app");
     if (appContainer) {
       appContainer.scrollTop = 0;
     }
-
-    startMusic();
 
     // Kutlama konfetisi
     try {
