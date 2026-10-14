@@ -10,7 +10,7 @@
   <meta property="og:url" content="https://www.melisaeray.com/">
   <meta property="og:title" content="Melisa & Eray - Düğün Davetiyesi">
   <meta property="og:description" content="17 Kasım 2026 - Zamanın ötesine uzanacak bir hikayeye sevgimizle başlıyoruz. Davetiyemizi açmak için tıklayın.">
-  <meta property="og:image" content="https://www.melisaeray.com/assets/vintage_envelope.jpg">
+  <meta property="og:image" content="https://www.melisaeray.com/assets/main_theme.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Google Web Fonts: Vintage Serif & Calligraphy -->
@@ -37,11 +37,11 @@
     <i class="fa-solid fa-compact-disc"></i>
   </button>
 
-  <!-- Düşen Gül Yaprakları Katmanı -->
+  <!-- Düşen Beyaz Gül / Çiçek Yaprakları Katmanı -->
   <div id="petals-canvas-layer"></div>
 
   <!-- ========================================================
-       1 & 2: AÇILIŞ EKRANI - VINTAGE ZARF VE MÜHÜR (AI ARTWORK)
+       1 & 2: AÇILIŞ EKRANI - VINTAGE ZARF VE MÜHÜR (YENİ TEMA)
        ======================================================== -->
   <div id="envelope-layer">
     <div class="envelope-intro-quote">
@@ -50,12 +50,34 @@
 
     <!-- M&E Mühürlü Vintage Zarf Kartı -->
     <div class="envelope-interactive-card" id="envelopeBox" onclick="handleOpenEnvelope()">
+      <div class="envelope-card-inner-flap"></div>
+      
+      <!-- Mühür Arkasına Sıkıştırılmış Gerçekçi Zeytin Dalı (SVG) -->
+      <svg class="olive-sprig-behind-seal" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Dal -->
+        <path d="M15 90 C30 70 50 45 85 15" stroke="#5d4c38" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Zeytin Yaprakları (Sage & Olive tones) -->
+        <path d="M30 72 C35 60 48 60 46 72 C44 82 32 80 30 72 Z" fill="#607352" stroke="#46553c" stroke-width="0.8"/>
+        <path d="M38 58 C32 46 42 40 49 48 C54 56 46 64 38 58 Z" fill="#718661" stroke="#46553c" stroke-width="0.8"/>
+        <path d="M52 48 C58 35 72 37 68 48 C65 57 55 56 52 48 Z" fill="#607352" stroke="#46553c" stroke-width="0.8"/>
+        <path d="M64 34 C60 22 72 18 78 26 C82 34 72 40 64 34 Z" fill="#7c936b" stroke="#46553c" stroke-width="0.8"/>
+        <path d="M76 22 C84 10 94 14 91 22 C88 28 80 28 76 22 Z" fill="#697e59" stroke="#46553c" stroke-width="0.8"/>
+        <!-- Minik Zeytinler -->
+        <circle cx="48" cy="62" r="3.5" fill="#36402f" stroke="#252d21" stroke-width="0.6"/>
+        <circle cx="68" cy="38" r="3.2" fill="#3e4a36" stroke="#252d21" stroke-width="0.6"/>
+      </svg>
+
+      <!-- Wax Seal -->
+      <div class="wax-seal-vintage">
+        <div class="wax-seal-vintage-inner">M&E</div>
+      </div>
       <div class="seal-pulse-glow"></div>
     </div>
 
-    <!-- Dokunma / Açma İpucu -->
+    <!-- Dokunma / Kaydırma İpucu -->
     <div class="envelope-touch-indicator" onclick="handleOpenEnvelope()">
       <span>DAVETİYEMİZİ AÇIN</span>
+      <span class="sub-hint">(Dokunun veya Yukarı Kaydırın)</span>
       <i class="fa-solid fa-chevron-down"></i>
     </div>
   </div>
@@ -65,40 +87,25 @@
        ======================================================== -->
   <div id="invitation-app">
 
-    <!-- 1. KART: ANA DAVETİYE (Screen 3) -->
+    <!-- 1. KART: BİREBİR ANA DAVETİYE (Yüklenen Yeni Sanatsal Tablo) -->
     <section class="invitation-screen" id="screen-hero">
-      <div class="hero-overlay-shade"></div>
-      <div style="height: 10px;"></div>
-      
-      <div class="lace-frame-oval">
-        <div class="hero-quote-top">
-          ZAMANIN ÖTESİNE UZANACAK BİR HİKAYEYE, SEVGİMİZLE VE SEVDİKLERİMİZLE BAŞLIYORUZ...
-        </div>
-
-        <h1 class="names-calligraphy">Melisa</h1>
-        <div class="names-connector">ve</div>
-        <h1 class="names-calligraphy">Eray</h1>
-
-        <div class="hero-wedding-date">17.11.2026</div>
-        <div class="hero-wedding-venue">ALANYA BELEDİYESİ<br>NİKAH SALONU</div>
-        <div class="hero-wedding-time">16.00</div>
-      </div>
-
-      <div class="scroll-next-arrow" onclick="navigateTo('screen-details')">
+      <!-- Devamı Olduğunu Gösteren Zarif Yönlendirme Kapsülü -->
+      <div class="scroll-continue-pill" onclick="navigateTo('screen-details')">
+        <span>DEVAMI İÇİN KAYDIRIN</span>
         <i class="fa-solid fa-chevron-down"></i>
       </div>
     </section>
 
-    <!-- 2. KART: DETAYLAR & KONUM (Screen 4) -->
+    <!-- 2. KART: DETAYLAR & KONUM (Yeni Yağlı Boya Temalı Kart) -->
     <section class="invitation-screen" id="screen-details">
-      <div class="details-card-parchment">
+      <div class="details-card-theme">
         <p class="details-poem-quote">
           "BU ÖZEL GÜNÜMÜZDE<br>
           SİZLERİ DE ARAMIZDA GÖRMEKTEN<br>
           MUTLULUK DUYARIZ..."
         </p>
 
-        <div class="botanical-ornament">
+        <div class="botanical-ornament-theme">
           <i class="fa-solid fa-seedling"></i>
         </div>
 
@@ -132,22 +139,22 @@
         </div>
       </div>
 
-      <!-- Sanatsal Alanya Suluboya Manzara Çerçevesi (AI Artwork) -->
-      <div class="alanya-art-preview"></div>
+      <!-- Yağlı Boya Tablo Detay Minyatürü -->
+      <div class="details-art-mini"></div>
 
-      <button class="btn-open-location" onclick="showMap()">
+      <button class="btn-open-location-theme" onclick="showMap()">
         <i class="fa-solid fa-location-pin"></i>
         <span>KONUM İÇİN TIKLAYIN</span>
       </button>
     </section>
 
-    <!-- 3. KART: GERİ SAYIM & TAKVİM (Screen 5) -->
+    <!-- 3. KART: GERİ SAYIM & TAKVİM -->
     <section class="invitation-screen" id="screen-timer">
-      <div class="timer-card-wrapper">
+      <div class="timer-card-wrapper-theme">
         <div class="timer-top-label">BÜYÜK GÜNÜMÜZE</div>
         <div class="timer-calligraphy-subtitle">Kalan Süre</div>
 
-        <div class="botanical-ornament">
+        <div class="botanical-ornament-theme">
           <i class="fa-solid fa-leaf"></i>
         </div>
 
@@ -171,7 +178,7 @@
           </div>
         </div>
 
-        <div class="botanical-ornament">
+        <div class="botanical-ornament-theme">
           <i class="fa-solid fa-seedling"></i>
         </div>
 
@@ -194,12 +201,12 @@
       </div>
     </section>
 
-    <!-- 4. KART: KATILIM & DİLEK KUTUSU (Screen 6) -->
+    <!-- 4. KART: KATILIM & DİLEK KUTUSU -->
     <section class="invitation-screen" id="screen-rsvp">
-      <div class="rsvp-card-wrapper">
+      <div class="rsvp-card-wrapper-theme">
         <h2 class="rsvp-cursive-title">Mutluluğumuza<br>Ortak Olur Musunuz?</h2>
 
-        <div class="botanical-ornament">
+        <div class="botanical-ornament-theme">
           <i class="fa-solid fa-leaf"></i>
         </div>
 
@@ -226,7 +233,7 @@
           </select>
         </div>
 
-        <div class="botanical-ornament">
+        <div class="botanical-ornament-theme">
           <i class="fa-solid fa-seedling"></i>
         </div>
 
