@@ -44,6 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hemen zarf katmanını yukarı kaydırıp ana davetiyeye geçir (gecikmesiz anında tepki)
     envelopeLayer.classList.add("unveiled");
 
+    const appContainer = document.getElementById("invitation-app");
+    if (appContainer) {
+      appContainer.scrollTop = 0;
+    }
+
     // Kutlama konfetisi
     try {
       if (typeof confetti === "function") {
