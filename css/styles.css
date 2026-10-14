@@ -50,18 +50,25 @@ html, body {
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.7);
 }
 
-/* Yüzen Müzik Butonu */
-.floating-music-btn {
+/* Yüzen Müzik Butonu + İpucu */
+.music-hint-wrap {
   position: fixed;
-  top: 18px;
-  right: 18px;
+  top: 16px;
+  right: 16px;
   z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.floating-music-btn {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(251, 249, 244, 0.92);
+  background: rgba(251, 249, 244, 0.93);
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
   border: 1px solid var(--theme-border-lace);
   color: var(--theme-olive);
   display: flex;
@@ -73,8 +80,25 @@ html, body {
 }
 
 .floating-music-btn.is-playing {
-  animation: rotateVinyl 6s linear infinite;
+  animation: rotateVinyl 5s linear infinite;
   color: var(--theme-gold-accent);
+}
+
+.music-hint-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #f5f2ea;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+  text-align: center;
+  white-space: nowrap;
+  transition: opacity 0.4s ease;
+}
+
+.music-hint-label.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 @keyframes rotateVinyl {
@@ -266,14 +290,13 @@ html, body {
 }
 
 .hero-bride-name {
-  font-family: 'Pinyon Script', 'Alex Brush', cursive;
+  font-family: 'Corinthia', 'Pinyon Script', 'Alex Brush', cursive;
   font-style: normal;
-  font-size: 58px;
-  color: #2a2820;
-  line-height: 1.0;
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.09);
+  font-size: 72px;
+  color: #232820;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 
 .hero-names-connector {
@@ -298,14 +321,13 @@ html, body {
 }
 
 .hero-groom-name {
-  font-family: 'Pinyon Script', 'Alex Brush', cursive;
+  font-family: 'Corinthia', 'Pinyon Script', 'Alex Brush', cursive;
   font-style: normal;
-  font-size: 58px;
-  color: #2a2820;
-  line-height: 1.0;
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.09);
+  font-size: 72px;
+  color: #232820;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 
 .hero-wedding-date-text {
@@ -924,3 +946,28 @@ html, body {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
 }
+
+/* Orijinal davetiye görseli ve bağımsız plak kontrolü */
+#screen-hero { padding: 0; background: #343a2b; }
+.original-invitation { width: 100%; height: 100%; object-fit: contain; display: block; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.music-hint-wrap {
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  right: max(12px, calc((100vw - 440px) / 2 + 12px));
+  align-items: flex-end;
+  max-width: calc(100vw - 24px);
+}
+.floating-music-btn { width: 50px; height: 50px; padding: 3px; background: #e5d9bb; touch-action: manipulation; }
+.floating-music-btn.is-playing { animation: none; }
+.vinyl-record {
+  display: block; width: 100%; height: 100%; border-radius: 50%;
+  background: radial-gradient(circle, #171b16 0 5%, #d7bc7e 6% 23%, #3c4534 24% 29%, transparent 30%),
+    repeating-radial-gradient(circle, #151814 0 2px, #34372e 3px, #171a16 4px);
+  box-shadow: inset 0 0 0 1px #585c4c;
+  animation: rotateVinyl 5s linear infinite; animation-play-state: paused;
+}
+.is-playing .vinyl-record { animation-play-state: running; }
+.floating-music-btn:focus-visible { outline: 3px solid #d7bc7e; outline-offset: 4px; }
+.music-hint-label { font-size: 10px; letter-spacing: .2px; padding: 6px 9px; border-radius: 12px; background: rgba(29,36,25,.9); color: #fff8e9; }
+#envelope-layer { padding-top: max(110px, calc(env(safe-area-inset-top, 0px) + 100px)); }
+@media (prefers-reduced-motion: reduce) { .vinyl-record { animation: none; } }

@@ -16,31 +16,68 @@ document.addEventListener("DOMContentLoaded", () => {
   const mapModal = document.getElementById("mapModal");
   const petalsLayer = document.getElementById("petals-canvas-layer");
 
-  let isAudioActive = false;
+  const musicBtn = document.getElementById("musicBtn");
+  const musicHintLabel = document.getElementById("musicHintLabel");
+  let manuallyPaused = false;
+  let playAttempt = 0;
 
-  // -------------------------------------------------------------------------
-  // MÜZİK — Tarayıcı politikası: doğrudan event handler içinde çağrılmalı
-  // -------------------------------------------------------------------------
-  function tryPlayAudio() {
-    if (isAudioActive) return;
-    isAudioActive = true;
-    audio.volume = 0.8;
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => { isAudioActive = false; });
-    }
+  function syncMusicControl() {
+    const playing = !audio.paused && !audio.ended && !audio.error;
+    musicBtn.classList.toggle("is-playing", playing);
+    musicBtn.setAttribute("aria-pressed", String(playing));
+    musicBtn.setAttribute("aria-label", playing ? "Müziği durdur" : "Müziği başlat");
+    musicHintLabel.textContent = playing
+      ? "Müziği durdurmak için dokunun"
+      : "Müzik için lütfen dokunun";
   }
 
-  // Her türlü ilk dokunuş/tıklamada dene
-  document.addEventListener("touchstart", function onFirstTouch() {
-    tryPlayAudio();
-    document.removeEventListener("touchstart", onFirstTouch);
-  }, { passive: true });
+  function tryPlayAudio() {
+    if (manuallyPaused || !audio.paused) return;
+    const attempt = ++playAttempt;
+    audio.volume = 0.8;
+    audio.muted = false;
+    // play() doğrudan kullanıcı olayı içinde çağrılır; animasyon beklenmez.
+    try {
+      const result = audio.play();
+      if (result) result.catch(() => {
+        if (attempt === playAttempt && audio.paused) syncMusicControl();
+      });
+    } catch (_) { syncMusicControl(); }
+  }
 
-  document.addEventListener("click", function onFirstClick() {
-    tryPlayAudio();
-    document.removeEventListener("click", onFirstClick);
+  window.handleMusicBtn = function() {
+    if (!audio.paused) {
+      manuallyPaused = true;
+      ++playAttempt;
+      audio.pause();
+    } else {
+      manuallyPaused = false;
+      if (audio.error) audio.load();
+      tryPlayAudio();
+    }
+    syncMusicControl();
+  };
+
+  ["playing", "pause", "ended", "error"].forEach(event => {
+    audio.addEventListener(event, syncMusicControl);
   });
+  audio.addEventListener("error", () => {
+    musicHintLabel.textContent = "Müzik yüklenemedi · Tekrar dokunun";
+  });
+
+  function unlockAudio(event) {
+    // Butonun kendi aç/kapat işlemiyle çakışmaz; kapatılan müziği yeniden açmaz.
+    if (event.target.closest("#musicHintWrap")) return;
+    tryPlayAudio();
+  }
+  document.addEventListener("click", unlockAudio);
+  document.addEventListener("touchend", unlockAudio, { passive: true });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") unlockAudio(event);
+  });
+  syncMusicControl();
+  // İzin veren tarayıcılarda otomatik; engellenirse ilk dokunuşta yeniden dene.
+  tryPlayAudio();
 
   // -------------------------------------------------------------------------
   // 1 & 2: ZARF AÇILIŞ ANİMASYONU
