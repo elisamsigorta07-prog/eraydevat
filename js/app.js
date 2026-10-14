@@ -275,18 +275,65 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // -------------------------------------------------------------------------
+  // TELEGRAM BOT BİLDİRİM ENTEGRASYONU (@Davet12Bot)
+  // -------------------------------------------------------------------------
+  const TG_BOT_TOKEN = "8826023436:AAFqqHsxSfP8eGEgwCGkmJd1D0pIc1_p7bo";
+  // Chat ID biliniyorsa doğrudan gönderilir; bilinmiyorsa getUpdates ile dinamik yakalanır
+  let TG_CHAT_ID = localStorage.getItem("tg_wedding_chat_id") || "";
+
+  async function sendTelegramMessage(text) {
+    try {
+      // Eğer Chat ID henüz yoksa, botun en son gelen mesajlarından chat ID'yi bul ve sakla
+      if (!TG_CHAT_ID) {
+        const updRes = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/getUpdates`);
+        const updData = await updRes.json();
+        if (updData.ok && updData.result && updData.result.length > 0) {
+          const lastMsg = updData.result[updData.result.length - 1];
+          const chatId = lastMsg.message ? lastMsg.message.chat.id : (lastMsg.my_chat_member ? lastMsg.my_chat_member.chat.id : null);
+          if (chatId) {
+            TG_CHAT_ID = String(chatId);
+            localStorage.setItem("tg_wedding_chat_id", TG_CHAT_ID);
+          }
+        }
+      }
+
+      if (TG_CHAT_ID) {
+        await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: TG_CHAT_ID,
+            text: text,
+            parse_mode: "HTML"
+          })
+        });
+      }
+    } catch (err) {
+      console.log("Telegram notification:", err);
+    }
+  }
+
+  // -------------------------------------------------------------------------
   // KATILIM (RSVP) & MESAJ İŞLEMLERİ
   // -------------------------------------------------------------------------
+  let selectedRsvpChoice = null;
+
   window.handleRsvpChoice = function(isComing) {
     const btnYes = document.getElementById("btnRsvpYes");
     const btnNo = document.getElementById("btnRsvpNo");
     const guestBlock = document.getElementById("guestAttendanceBlock");
+    const guestCountSelect = document.getElementById("guestCountSelect");
+    const guestNameInput = document.getElementById("guestNameInput");
+
+    selectedRsvpChoice = isComing;
 
     if (isComing) {
       btnYes.classList.add("selected");
       btnNo.classList.remove("selected");
       guestBlock.style.display = "block";
-      showToastNotification("Harika! Katılımınızı heyecanla bekliyoruz ✨");
+      guestCountSelect.style.display = "block";
+      guestNameInput.placeholder = "Adınız ve Soyadınız (Katılımcı)";
+      showToastNotification("Harika! Lütfen adınızı yazıp onaylayın ✨");
       
       try {
         if (typeof confetti === "function") {
@@ -301,17 +348,72 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       btnNo.classList.add("selected");
       btnYes.classList.remove("selected");
-      guestBlock.style.display = "none";
-      showToastNotification("Gönülden yanımızda olduğunuzu biliyoruz, teşekkürler 🤍");
+      guestBlock.style.display = "block";
+      guestCountSelect.style.display = "none";
+      guestNameInput.placeholder = "Adınız ve Soyadınız";
+      showToastNotification("Gönülden yanımızda olduğunuzu biliyoruz 🤍");
     }
+  };
+
+  window.submitRsvpToTelegram = function() {
+    const nameField = document.getElementById("guestNameInput");
+    const countSelect = document.getElementById("guestCountSelect");
+    const guestName = nameField.value.trim();
+
+    if (!guestName) {
+      showToastNotification("Lütfen adınızı ve soyadınızı yazın.");
+      nameField.focus();
+      return;
+    }
+
+    if (selectedRsvpChoice === null) {
+      showToastNotification("Lütfen katılım durumunuzu seçin.");
+      return;
+    }
+
+    const isYes = selectedRsvpChoice === true;
+    const count = countSelect.value;
+    const nowStr = new Date().toLocaleString("tr-TR");
+
+    let tgMsg = "";
+    if (isYes) {
+      tgMsg = `🌸 <b>YENİ DAVETİYE KATILIM BİLDİRİMİ!</b>\n\n` +
+              `✅ <b>Durum:</b> EVET, KATILACAĞIM\n` +
+              `👤 <b>İsim:</b> ${guestName}\n` +
+              `👥 <b>Kişi Sayısı:</b> ${count}\n` +
+              `🕒 <b>Tarih:</b> ${nowStr}`;
+      showToastNotification("Katılım cevabınız başarıyla iletildi! 🎉");
+    } else {
+      tgMsg = `🤍 <b>YENİ DAVETİYE BİLDİRİMİ</b>\n\n` +
+              `❌ <b>Durum:</b> MAALESEF KATILAMAYACAĞIM\n` +
+              `👤 <b>İsim:</b> ${guestName}\n` +
+              `🕒 <b>Tarih:</b> ${nowStr}`;
+      showToastNotification("Cevabınız sevgiyle iletildi, teşekkürler 🤍");
+    }
+
+    sendTelegramMessage(tgMsg);
+    nameField.value = "";
+    document.getElementById("guestAttendanceBlock").style.display = "none";
   };
 
   window.handleSendGuestNote = function() {
     const noteField = document.getElementById("guestNoteInput");
-    if (!noteField.value.trim()) {
+    const nameField = document.getElementById("guestNameInput");
+    const note = noteField.value.trim();
+    const guestName = nameField.value.trim() || "Bir Misafir";
+
+    if (!note) {
       showToastNotification("Lütfen bir dilek veya mesaj yazın.");
       return;
     }
+
+    const nowStr = new Date().toLocaleString("tr-TR");
+    const tgMsg = `💌 <b>YENİ DİLEK / TEBRİK MESAJI!</b>\n\n` +
+                  `👤 <b>Gönderen:</b> ${guestName}\n` +
+                  `💬 <b>Mesaj:</b>\n"<i>${note}</i>"\n\n` +
+                  `🕒 <b>Tarih:</b> ${nowStr}`;
+
+    sendTelegramMessage(tgMsg);
     showToastNotification("Mesajınız sevgiyle iletildi! 💕");
     noteField.value = "";
     

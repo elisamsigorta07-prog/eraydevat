@@ -192,7 +192,7 @@
           </button>
         </div>
 
-        <!-- Misafir Katılım Sayısı ve İsim Alanı -->
+        <!-- Misafir Katılım Formu (Ad Soyad, Kişi Sayısı & Onay) -->
         <div class="guest-attendance-form" id="guestAttendanceBlock">
           <input type="text" id="guestNameInput" class="guest-input-vintage" placeholder="Adınız ve Soyadınız">
           <select id="guestCountSelect" class="guest-input-vintage">
@@ -201,6 +201,10 @@
             <option value="3">3 Kişi Katılacağız</option>
             <option value="4+">4+ Kişi Katılacağız</option>
           </select>
+          <button type="button" class="btn-confirm-rsvp" id="btnConfirmRsvp" onclick="submitRsvpToTelegram()">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Cevabımı İlet</span>
+          </button>
         </div>
 
         <div class="botanical-ornament-theme">
