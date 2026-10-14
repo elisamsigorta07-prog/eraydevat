@@ -1,17 +1,18 @@
 /* ==========================================================================
-   MELISA & ERAY - YENİ MODERN VINTAGE TEMA (YAĞLI BOYA & DANTEL SANATI)
-   Kullanıcının yüklediği orijinal vintage yağlı boya tablosu ve dantel motifi
+   MELISA & ERAY - YENİ MODERN VINTAGE TEMA (8K AI MASTERPIECE)
+   Kristal netliğinde yağlı boya tuval, dantel çerçeve ve canlı tipografi
    ========================================================================== */
 
 :root {
-  --theme-dark-green: #2d3829;
-  --theme-deep-forest: #1f271c;
-  --theme-olive: #4a5c43;
-  --theme-gold-accent: #bda061;
+  --theme-dark-green: #253122;
+  --theme-deep-forest: #192216;
+  --theme-olive: #4d5e44;
+  --theme-gold-accent: #c5a059;
   --theme-parchment: #fbf9f4;
-  --theme-text-charcoal: #252822;
+  --theme-text-dark: #2c2f28;
+  --theme-text-muted: #5e6358;
   --theme-border-lace: #d8cdba;
-  --safe-top: env(safe-area-inset-top, 20px);
+  --safe-top: env(safe-area-inset-top, 25px);
   --safe-bottom: env(safe-area-inset-bottom, 25px);
 }
 
@@ -25,9 +26,9 @@
 html, body {
   width: 100%;
   height: 100%;
-  background-color: #151913;
+  background-color: #121710;
   font-family: 'Cormorant Garamond', Georgia, serif;
-  color: var(--theme-text-charcoal);
+  color: var(--theme-text-dark);
   overflow: hidden;
   user-select: none;
 }
@@ -58,7 +59,7 @@ html, body {
   border-radius: 50%;
   background: rgba(251, 249, 244, 0.92);
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
   border: 1px solid var(--theme-border-lace);
   color: var(--theme-olive);
   display: flex;
@@ -104,7 +105,7 @@ html, body {
 }
 
 /* ==========================================================================
-   1 & 2: AÇILIŞ ZARFI VE MÜHÜR (YENİ VINTAGE YAĞLI BOYA TEMASI)
+   1 & 2: AÇILIŞ ZARFI VE MÜHÜR (8K AI ENVELOPE & OLIVE SPRIG)
    ========================================================================== */
 #envelope-layer {
   position: fixed;
@@ -113,8 +114,8 @@ html, body {
   margin: 0 auto;
   z-index: 6000;
   background: 
-    linear-gradient(180deg, rgba(31, 39, 28, 0.6) 0%, rgba(31, 39, 28, 0.3) 50%, rgba(20, 26, 18, 0.85) 100%),
-    url('../assets/main_theme.jpg') center center / cover no-repeat;
+    linear-gradient(180deg, rgba(20, 26, 18, 0.75) 0%, rgba(25, 34, 22, 0.45) 45%, rgba(15, 20, 13, 0.9) 100%),
+    url('../assets/envelope_olive_luxury.jpg') center center / cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -140,18 +141,18 @@ html, body {
   color: #f7f4ec;
   font-weight: 500;
   text-transform: uppercase;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.85);
 }
 
-/* 3D Etkili Vintage Parşömen Zarf */
+/* M&E Mühürlü ve Zeytin Dallı Lüks Zarf Kartı */
 .envelope-interactive-card {
   position: relative;
   width: 320px;
-  height: 220px;
+  height: 225px;
   border-radius: 12px;
-  background: #f6efe2;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 8px 25px rgba(0,0,0,0.3);
-  border: 1px solid rgba(210, 195, 170, 0.8);
+  background: url('../assets/envelope_olive_luxury.jpg') center center / cover no-repeat;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 8px 25px rgba(0,0,0,0.35);
+  border: 1px solid rgba(220, 205, 175, 0.6);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -163,80 +164,25 @@ html, body {
   transform: scale(0.97);
 }
 
-.envelope-card-inner-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 110px 160px 0 160px;
-  border-color: #eee4d1 transparent transparent transparent;
-}
-
-/* Mühür Altına Sıkıştırılmış Gerçekçi Zeytin Dalı (SVG) */
-.olive-sprig-behind-seal {
-  position: absolute;
-  top: 44%;
-  left: 54%;
-  transform: translate(-30%, -60%) rotate(28deg);
-  width: 90px;
-  height: 90px;
-  pointer-events: none;
-  z-index: 8;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-}
-
-.wax-seal-vintage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #d9b577 0%, #aa8543 60%, #6e5221 100%);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), inset 0 2px 3px rgba(255,255,255,0.4), inset 0 -3px 5px rgba(0,0,0,0.4);
-  border: 2px solid #bda061;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.wax-seal-vintage-inner {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  border: 1.5px dashed rgba(255, 255, 255, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Alex Brush', cursive;
-  font-size: 28px;
-  color: #fff9ea;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
 .seal-pulse-glow {
   position: absolute;
   width: 95px;
   height: 95px;
   border-radius: 50%;
-  border: 2px solid rgba(220, 190, 120, 0.7);
+  border: 2px solid rgba(220, 190, 120, 0.8);
   animation: sealGlow 2s infinite ease-out;
 }
 
 @keyframes sealGlow {
   0% { transform: scale(0.9); opacity: 0.9; }
-  100% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.55); opacity: 0; }
 }
 
 .envelope-touch-indicator {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-family: 'Cinzel', serif;
   font-size: 13px;
   letter-spacing: 3px;
@@ -244,7 +190,7 @@ html, body {
   font-weight: 600;
   animation: bounceHint 2s infinite;
   cursor: pointer;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.85);
 }
 
 .envelope-touch-indicator .sub-hint {
@@ -281,33 +227,129 @@ html, body {
 }
 
 /* --------------------------------------------------------------------------
-   SCREEN 1: BİREBİR ANA DAVETİYE (Yüklenen Orijinal Tablo Görseli)
+   SCREEN 1: KRİSTAL NETLİĞİNDE ANA DAVETİYE (8K AI LACE MASTERPIECE)
    -------------------------------------------------------------------------- */
 #screen-hero {
-  background: url('../assets/main_theme.jpg') center center / cover no-repeat;
-  justify-content: flex-end;
-  padding-bottom: 25px;
+  background: url('../assets/theme_lace_masterpiece.jpg') center center / cover no-repeat;
+  justify-content: center;
+  padding: 0 20px;
 }
 
-/* Zarif "Devamı İçin Aşağı Kaydırın" Buton Kapsülü */
+/* Dantel Oval Çerçevenin Merkezine Kusursuz Oturan Canlı Tipografi */
+.hero-typography-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 250px;
+  margin-top: -15px; /* Dantel çerçevenin tam ortasına hizalama */
+}
+
+.hero-quote-script {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--theme-text-muted);
+  margin-bottom: 22px;
+  letter-spacing: 0.3px;
+}
+
+.hero-bride-name {
+  font-family: 'Alex Brush', cursive;
+  font-size: 58px;
+  color: #242720;
+  line-height: 1;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.hero-names-connector {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: #727a6c;
+  margin: 3px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 45%;
+  justify-content: center;
+}
+
+.hero-names-connector::before, .hero-names-connector::after {
+  content: "";
+  height: 1px;
+  background: #cfcaa5;
+  flex: 1;
+}
+
+.hero-groom-name {
+  font-family: 'Alex Brush', cursive;
+  font-size: 58px;
+  color: #242720;
+  line-height: 1;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.hero-wedding-date-text {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  color: #2b3026;
+  margin-top: 26px;
+}
+
+.hero-wedding-venue-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  color: #555b4e;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.hero-wedding-time-text {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #2b3026;
+  margin-top: 4px;
+}
+
+/* "Devamı İçin Kaydırın" Kapsülü */
+.hero-scroll-bottom-wrap {
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 20;
+}
+
 .scroll-continue-pill {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px 20px;
   border-radius: 25px;
-  background: rgba(31, 39, 28, 0.75);
+  background: rgba(25, 34, 22, 0.85);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(220, 205, 175, 0.45);
+  border: 1px solid rgba(220, 205, 175, 0.5);
   color: #f7f4ec;
   font-family: 'Cinzel', serif;
   font-size: 11px;
   letter-spacing: 2px;
   font-weight: 500;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
   cursor: pointer;
   animation: bounceHint 2.2s infinite;
-  z-index: 10;
   transition: all 0.25s ease;
 }
 
@@ -318,28 +360,28 @@ html, body {
 
 .scroll-continue-pill:active {
   transform: scale(0.95);
-  background: rgba(31, 39, 28, 0.9);
+  background: rgba(25, 34, 22, 0.95);
 }
 
 /* --------------------------------------------------------------------------
-   SCREEN 2: DETAYLAR & KONUM (Yeni Yağlı Boya Temalı Kart)
+   SCREEN 2: DETAYLAR & KONUM (8K Yağlı Boya Temalı)
    -------------------------------------------------------------------------- */
 #screen-details {
   background: 
-    linear-gradient(180deg, rgba(31, 39, 28, 0.82) 0%, rgba(31, 39, 28, 0.7) 50%, rgba(20, 26, 18, 0.9) 100%),
-    url('../assets/main_theme.jpg') center center / cover no-repeat;
+    linear-gradient(180deg, rgba(25, 34, 22, 0.85) 0%, rgba(30, 40, 26, 0.75) 50%, rgba(18, 24, 15, 0.92) 100%),
+    url('../assets/theme_lace_masterpiece.jpg') center center / cover no-repeat;
 }
 
 .details-card-theme {
   width: 100%;
   background: rgba(251, 249, 244, 0.96);
-  border-radius: 16px;
+  border-radius: 18px;
   border: 1px solid var(--theme-border-lace);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
   padding: 28px 18px;
   margin-top: 30px;
   text-align: center;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
 }
 
 .details-poem-quote {
@@ -422,17 +464,17 @@ html, body {
   margin-top: 3px;
 }
 
-/* Yağlı boya minyatür çerçevesi */
+/* Alanya Suluboya Manzara Çerçevesi */
 .details-art-mini {
   width: 100%;
   max-width: 320px;
-  height: 130px;
+  height: 135px;
   margin: 20px auto;
   border-radius: 12px;
   border: 1px solid #dfd2be;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-  background: url('../assets/main_theme.jpg') center center / cover no-repeat;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background: url('../assets/alanya_watercolor.jpg') center center / cover no-repeat;
 }
 
 .btn-open-location-theme {
@@ -443,7 +485,7 @@ html, body {
   background: rgba(251, 249, 244, 0.96);
   color: #2b2823;
   border: 1px solid #d5c6af;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
   font-family: 'Cinzel', serif;
   font-size: 12.5px;
   letter-spacing: 2px;
@@ -472,8 +514,8 @@ html, body {
    -------------------------------------------------------------------------- */
 #screen-timer {
   background: 
-    linear-gradient(180deg, rgba(31, 39, 28, 0.85) 0%, rgba(31, 39, 28, 0.75) 50%, rgba(20, 26, 18, 0.92) 100%),
-    url('../assets/main_theme.jpg') center center / cover no-repeat;
+    linear-gradient(180deg, rgba(25, 34, 22, 0.88) 0%, rgba(30, 40, 26, 0.8) 50%, rgba(18, 24, 15, 0.94) 100%),
+    url('../assets/theme_lace_masterpiece.jpg') center center / cover no-repeat;
 }
 
 .timer-card-wrapper-theme {
@@ -481,11 +523,11 @@ html, body {
   background: rgba(251, 249, 244, 0.96);
   border-radius: 18px;
   border: 1px solid var(--theme-border-lace);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
   padding: 34px 18px 28px 18px;
   margin: auto 0;
   text-align: center;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
 }
 
 .timer-top-label {
@@ -598,8 +640,8 @@ html, body {
    -------------------------------------------------------------------------- */
 #screen-rsvp {
   background: 
-    linear-gradient(180deg, rgba(31, 39, 28, 0.88) 0%, rgba(31, 39, 28, 0.78) 50%, rgba(20, 26, 18, 0.94) 100%),
-    url('../assets/main_theme.jpg') center center / cover no-repeat;
+    linear-gradient(180deg, rgba(25, 34, 22, 0.9) 0%, rgba(30, 40, 26, 0.82) 50%, rgba(18, 24, 15, 0.95) 100%),
+    url('../assets/envelope_olive_luxury.jpg') center center / cover no-repeat;
 }
 
 .rsvp-card-wrapper-theme {
@@ -607,11 +649,11 @@ html, body {
   background: rgba(251, 249, 244, 0.96);
   border-radius: 18px;
   border: 1px solid var(--theme-border-lace);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
   padding: 34px 20px 25px 20px;
   margin: auto 0;
   text-align: center;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
 }
 
 .rsvp-cursive-title {
@@ -646,13 +688,13 @@ html, body {
 }
 
 .btn-rsvp-action.positive {
-  background: #5b7050;
+  background: #4f6345;
   color: #fff;
-  box-shadow: 0 4px 14px rgba(91, 112, 80, 0.35);
+  box-shadow: 0 4px 14px rgba(79, 99, 69, 0.35);
 }
 
 .btn-rsvp-action.positive.selected {
-  background: #3e4e37;
+  background: #374730;
   transform: scale(1.02);
 }
 
@@ -722,7 +764,7 @@ html, body {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: #5b7050;
+  background: #4f6345;
   color: #fff;
   border: none;
   display: flex;
@@ -824,7 +866,7 @@ html, body {
   padding: 12px;
   text-align: center;
   border-radius: 8px;
-  background: #5b7050;
+  background: #4f6345;
   color: #fff;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
@@ -837,7 +879,7 @@ html, body {
 }
 
 .btn-apple-maps {
-  background: #2f382a;
+  background: #2a3525;
 }
 
 .toast-notification-pill {
@@ -845,7 +887,7 @@ html, body {
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%) translateY(100px);
-  background: #253320;
+  background: #222d1e;
   color: #fff;
   padding: 13px 26px;
   border-radius: 30px;
@@ -858,7 +900,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
 .toast-notification-pill.active {
